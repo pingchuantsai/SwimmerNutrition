@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwimFuel Pro - Elite Swimmer Nutrition</title>
+    <!-- Chart.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/4.4.0/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation Header */
+        .nav-header {
+            background: white;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #374151;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: #1e40af;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            border-radius: 30px;
+            margin: 40px;
+            padding: 80px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-subtitle {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            color: #fbbf24;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+
+        .hero-button {
+            background: transparent;
+            color: white;
+            border: 3px solid white;
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hero-button:hover {
+            background: white;
+            color: #1e40af;
+        }
+
+        .hero-image {
+            flex-shrink: 0;
+            margin-left: 40px;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+        }
+
+        /* Page sections */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .nav-header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .hero-section {
+                margin: 20px;
+                padding: 40px 30px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                margin-left: 0;
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landingPage" class="page-section active">
+        <!-- Navigation Header -->
+        <nav class="nav-header">
+            <div class="logo-section">
+                <svg class="logo-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Water base -->
+                    <rect x="15" y="80" width="90" height="30" rx="10" fill="#4a90e2" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Water waves -->
+                    <path d="M20 85 Q30 82 40 85 T60 85 T80 85 T100 85" fill="none" stroke="#1e3a8a" stroke-width="3"/>
+                    <path d="M20 90 Q30 87 40 90 T60 90 T80 90 T100 90" fill="none" stroke="#1e3a8a" stroke-width="3"/>
+                    <path d="M20 95 Q30 92 40 95 T60 95 T80 95 T100 95" fill="none" stroke="#1e3a8a" stroke-width="3"/>
+                    
+                    <!-- Swimmer body -->
+                    <path d="M35 55 Q35 45 60 45 Q85 45 85 55 L85 80 Q85 85 60 85 Q35 85 35 80 Z" fill="#fdbcb4" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Swimmer head -->
+                    <circle cx="60" cy="30" r="18" fill="#fdbcb4" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Swimming cap -->
+                    <path d="M42 25 Q60 12 78 25 Q78 18 60 12 Q42 18 42 25" fill="#4a90e2" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Goggles frame -->
+                    <ellipse cx="50" cy="28" rx="8" ry="5" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="3"/>
+                    <ellipse cx="70" cy="28" rx="8" ry="5" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="3"/>
+                    
+                    <!-- Goggles lenses -->
+                    <ellipse cx="50" cy="28" rx="5" ry="4" fill="#2563eb"/>
+                    <ellipse cx="70" cy="28" rx="5" ry="4" fill="#2563eb"/>
+                    
+                    <!-- Goggle bridge -->
+                    <line x1="58" y1="28" x2="62" y2="28" stroke="#1e3a8a" stroke-width="3"/>
+                    
+                    <!-- Smile -->
+                    <path d="M50 35 Q60 42 70 35" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="3"/>
+                    <rect x="54" y="38" width="12" height="4" fill="white"/>
+                    
+                    <!-- Food bowl (larger) -->
+                    <ellipse cx="60" cy="68" rx="22" ry="10" fill="#f97316" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Foods in bowl (larger and more detailed) -->
+                    <!-- Carrot -->
+                    <path d="M42 62 L48 68 L46 72 L40 66 Z" fill="#f97316" stroke="#1e3a8a" stroke-width="2"/>
+                    <path d="M42 62 L40 58 L43 57 L45 61" fill="#22c55e" stroke="#1e3a8a" stroke-width="1"/>
+                    
+                    <!-- Broccoli -->
+                    <circle cx="54" cy="64" r="5" fill="#22c55e" stroke="#1e3a8a" stroke-width="2"/>
+                    <circle cx="51" cy="60" r="3" fill="#16a34a" stroke="#1e3a8a" stroke-width="1"/>
+                    <circle cx="57" cy="60" r="3" fill="#16a34a" stroke="#1e3a8a" stroke-width="1"/>
+                    <rect x="53" y="64" width="2" height="6" fill="#92400e"/>
+                    
+                    <!-- Apple -->
+                    <circle cx="66" cy="64" r="5" fill="#ef4444" stroke="#1e3a8a" stroke-width="2"/>
+                    <ellipse cx="67" cy="59" rx="1.5" ry="3" fill="#22c55e"/>
+                    
+                    <!-- Banana -->
+                    <path d="M74 62 Q79 64 82 69 Q79 72 74 70 Q71 64 74 62" fill="#fbbf24" stroke="#1e3a8a" stroke-width="2"/>
+                    
+                    <!-- Bowl rim highlight -->
+                    <ellipse cx="60" cy="62" rx="22" ry="4" fill="#fb923c"/>
+                </svg>
+                <span class="logo-text">SwimFuel Pro</span>
+            </div>
+            
+            <div class="nav-links">
+                <span class="nav-link" onclick="showAbout()">About</span>
+                <span class="nav-link" onclick="showParents()">For Parents</span>
+                <span class="cta-button" onclick="showNutrition()">Personalized My Swimmer's Nutrition</span>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2 class="hero-subtitle">Fueling Before Competition</h2>
+                <h1 class="hero-title">Develop Swimmer's Personalized Nutrition Plan!</h1>
+                <span class="hero-button" onclick="showNutrition()">Get Started</span>
+            </div>
+            
+            <div class="hero-image">
+                <img
+                    src="https://raw.githubusercontent.com/pingchuantsai/Image_storing/main/SwimmerNutrition4.png"
+                    alt="Balanced swimmer meal: carbs, protein and veggies"
+                />
+            </div>
+        </section>
+    </div>
+
+    <!-- About Section -->
+    <div id="aboutPage" class="page-section">
+        <!-- Navigation Header -->
+        <nav class="nav-header">
+            <div class="logo-section">
+                <svg class="logo-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Water base -->
+                    <rect x="15" y="80" width="90" height="30" rx="10" fill="#4a90e2" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Water waves -->
+                    <path d="M20 85 Q30 82 40 85 T60 85 T80 85 T100 85" fill="none" stroke="#1e3a8a" stroke-width="3"/>
+                    <path d="M20 90 Q30 87 40 90 T60 90 T80 90 T100 90" fill="none" stroke="#1e3a8a" stroke-width="3"/>
+                    <path d="M20 95 Q30 92 40 95 T60 95 T80 95 T100 95" fill="none" stroke="#1e3a8a" stroke-width="3"/>
+                    
+                    <!-- Swimmer body -->
+                    <path d="M35 55 Q35 45 60 45 Q85 45 85 55 L85 80 Q85 85 60 85 Q35 85 35 80 Z" fill="#fdbcb4" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Swimmer head -->
+                    <circle cx="60" cy="30" r="18" fill="#fdbcb4" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Swimming cap -->
+                    <path d="M42 25 Q60 12 78 25 Q78 18 60 12 Q42 18 42 25" fill="#4a90e2" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Goggles frame -->
+                    <ellipse cx="50" cy="28" rx="8" ry="5" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="3"/>
+                    <ellipse cx="70" cy="28" rx="8" ry="5" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="3"/>
+                    
+                    <!-- Goggles lenses -->
+                    <ellipse cx="50" cy="28" rx="5" ry="4" fill="#2563eb"/>
+                    <ellipse cx="70" cy="28" rx="5" ry="4" fill="#2563eb"/>
+                    
+                    <!-- Goggle bridge -->
+                    <line x1="58" y1="28" x2="62" y2="28" stroke="#1e3a8a" stroke-width="3"/>
+                    
+                    <!-- Smile -->
+                    <path d="M50 35 Q60 42 70 35" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="3"/>
+                    <rect x="54" y="38" width="12" height="4" fill="white"/>
+                    
+                    <!-- Food bowl (larger) -->
+                    <ellipse cx="60" cy="68" rx="22" ry="10" fill="#f97316" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Foods in bowl (larger and more detailed) -->
+                    <!-- Carrot -->
+                    <path d="M42 62 L48 68 L46 72 L40 66 Z" fill="#f97316" stroke="#1e3a8a" stroke-width="2"/>
+                    <path d="M42 62 L40 58 L43 57 L45 61" fill="#22c55e" stroke="#1e3a8a" stroke-width="1"/>
+                    
+                    <!-- Broccoli -->
+                    <circle cx="54" cy="64" r="5" fill="#22c55e" stroke="#1e3a8a" stroke-width="2"/>
+                    <circle cx="51" cy="60" r="3" fill="#16a34a" stroke="#1e3a8a" stroke-width="1"/>
+                    <circle cx="57" cy="60" r="3" fill="#16a34a" stroke-width="1"/>
+                    <rect x="53" y="64" width="2" height="6" fill="#92400e"/>
+                    
+                    <!-- Apple -->
+                    <circle cx="66" cy="64" r="5" fill="#ef4444" stroke="#1e3a8a" stroke-width="2"/>
+                    <ellipse cx="67" cy="59" rx="1.5" ry="3" fill="#22c55e"/>
+                    
+                    <!-- Banana -->
+                    <path d="M74 62 Q79 64 82 69 Q79 72 74 70 Q71 64 74 62" fill="#fbbf24" stroke="#1e3a8a" stroke-width="2"/>
+                    
+                    <!-- Bowl rim highlight -->
+                    <ellipse cx="60" cy="62" rx="22" ry="4" fill="#fb923c"/>
+                </svg>
+                <span class="logo-text">SwimFuel Pro</span>
+            </div>
+            
+            <div class="nav-links">
+                <span class="nav-link" onclick="showAbout()">About</span>
+                <span class="nav-link" onclick="showParents()">For Parents</span>
+                <span class="cta-button" onclick="showNutrition()">Personalized My Swimmer's Nutrition</span>
+            </div>
+        </nav>
+
+        <!-- About Content -->
+        <div style="max-width: 800px; margin: 0 auto; padding: 60px 40px;">
+            <!-- Main Header -->
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h1 style="font-size: 3rem; font-weight: 700; color: #1e40af; margin-bottom: 20px;">About SwimFuel Pro</h1>
+                <h2 style="font-size: 1.8rem; font-weight: 600; color: #667eea; margin-bottom: 30px;">Every Lap Counts—So Does Every Bite.</h2>
+                <p style="font-size: 1.3rem; line-height: 1.6; color: #555; margin-bottom: 40px;">Our mission is to build a customized nutritional plan for your competitive swimmers in their training and preparation for their competition.</p>
+                <span class="cta-button" onclick="showNutrition()" style="display: inline-block; margin-top: 20px;">Get Your Nutrition Plan</span>
+            </div>
+
+            <!-- Our Approach Section -->
+            <div style="margin-bottom: 50px;">
+                <h3 style="font-size: 1.8rem; font-weight: 600; color: #1e40af; margin-bottom: 20px;">Our Approach</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">Our nutrition program is founded on the relationship between scientific research and practical meal planning. By connecting swimmers with personalized nutrition timelines, we're able to provide guidance that builds upon the training foundation laid by coaches and the support provided by parents.</p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">We believe that proper nutrition is just as important as training technique, and our customized approach ensures each swimmer gets the fuel they need to perform at their peak.</p>
+            </div>
+
+            <!-- Why Nutrition Matters Section -->
+            <div style="margin-bottom: 50px;">
+                <h3 style="font-size: 1.8rem; font-weight: 600; color: #1e40af; margin-bottom: 20px;">Why Nutrition Matters for Swimmers</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">Swimming is one of the most demanding sports, requiring both aerobic and anaerobic energy systems. Strategic carbohydrate loading can boost glycogen stores by 30-50%, giving swimmers the edge they need when it matters most.</p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555;">From pre-competition fueling to post-race recovery, every nutritional choice impacts performance. Our personalized plans take the guesswork out of what, when, and how much to eat.</p>
+            </div>
+
+            <!-- Our Impact Section -->
+            <div style="margin-bottom: 50px;">
+                <h3 style="font-size: 1.8rem; font-weight: 600; color: #1e40af; margin-bottom: 30px;">Our Impact</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px; text-align: center;">
+                    <div>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #1e40af;">30-50%</div>
+                        <div style="font-size: 1rem; color: #666;">Glycogen Boost</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #1e40af;">14 Day</div>
+                        <div style="font-size: 1rem; color: #666;">Timeline Plans</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #1e40af;">All Ages</div>
+                        <div style="font-size: 1rem; color: #666;">6-18+ Years</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; font-weight: 700; color: #1e40af;">Evidence</div>
+                        <div style="font-size: 1rem; color: #666;">Based Science</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div style="text-align: center; background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%); color: white; padding: 40px; border-radius: 20px;">
+                <h3 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 15px;">Ready to fuel your swimmer's success?</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 25px; opacity: 0.9;">Get started today to create a personalized nutrition plan tailored to your swimmer's competition schedule and training intensity.</p>
+                <span class="hero-button" onclick="showNutrition()">Start Your Nutrition Plan</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- For Parents Section -->
+    <div id="parentsPage" class="page-section">
+        <!-- Navigation Header -->
+        <nav class="nav-header">
+            <div class="logo-section">
+                <svg class="logo-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Water base -->
+                    <rect x="15" y="80" width="90" height="30" rx="10" fill="#4a90e2" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Water waves -->
+                    <path d="M20 85 Q30 82 40 85 T60 85 T80 85 T100 85" fill="none" stroke="#1e3a8a" stroke-width="3"/>
+                    <path d="M20 90 Q30 87 40 90 T60 90 T80 90 T100 90" fill="none" stroke="#1e3a8a" stroke-width="3"/>
+                    <path d="M20 95 Q30 92 40 95 T60 95 T80 95 T100 95" fill="none" stroke="#1e3a8a" stroke-width="3"/>
+                    
+                    <!-- Swimmer body -->
+                    <path d="M35 55 Q35 45 60 45 Q85 45 85 55 L85 80 Q85 85 60 85 Q35 85 35 80 Z" fill="#fdbcb4" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Swimmer head -->
+                    <circle cx="60" cy="30" r="18" fill="#fdbcb4" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Swimming cap -->
+                    <path d="M42 25 Q60 12 78 25 Q78 18 60 12 Q42 18 42 25" fill="#4a90e2" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Goggles frame -->
+                    <ellipse cx="50" cy="28" rx="8" ry="5" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="3"/>
+                    <ellipse cx="70" cy="28" rx="8" ry="5" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="3"/>
+                    
+                    <!-- Goggles lenses -->
+                    <ellipse cx="50" cy="28" rx="5" ry="4" fill="#2563eb"/>
+                    <ellipse cx="70" cy="28" rx="5" ry="4" fill="#2563eb"/>
+                    
+                    <!-- Goggle bridge -->
+                    <line x1="58" y1="28" x2="62" y2="28" stroke="#1e3a8a" stroke-width="3"/>
+                    
+                    <!-- Smile -->
+                    <path d="M50 35 Q60 42 70 35" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="3"/>
+                    <rect x="54" y="38" width="12" height="4" fill="white"/>
+                    
+                    <!-- Food bowl (larger) -->
+                    <ellipse cx="60" cy="68" rx="22" ry="10" fill="#f97316" stroke="#1e3a8a" stroke-width="4"/>
+                    
+                    <!-- Foods in bowl (larger and more detailed) -->
+                    <!-- Carrot -->
+                    <path d="M42 62 L48 68 L46 72 L40 66 Z" fill="#f97316" stroke="#1e3a8a" stroke-width="2"/>
+                    <path d="M42 62 L40 58 L43 57 L45 61" fill="#22c55e" stroke="#1e3a8a" stroke-width="1"/>
+                    
+                    <!-- Broccoli -->
+                    <circle cx="54" cy="64" r="5" fill="#22c55e" stroke="#1e3a8a" stroke-width="2"/>
+                    <circle cx="51" cy="60" r="3" fill="#16a34a" stroke="#1e3a8a" stroke-width="1"/>
+                    <circle cx="57" cy="60" r="3" fill="#16a34a" stroke-width="1"/>
+                    <rect x="53" y="64" width="2" height="6" fill="#92400e"/>
+                    
+                    <!-- Apple -->
+                    <circle cx="66" cy="64" r="5" fill="#ef4444" stroke="#1e3a8a" stroke-width="2"/>
+                    <ellipse cx="67" cy="59" rx="1.5" ry="3" fill="#22c55e"/>
+                    
+                    <!-- Banana -->
+                    <path d="M74 62 Q79 64 82 69 Q79 72 74 70 Q71 64 74 62" fill="#fbbf24" stroke="#1e3a8a" stroke-width="2"/>
+                    
+                    <!-- Bowl rim highlight -->
+                    <ellipse cx="60" cy="62" rx="22" ry="4" fill="#fb923c"/>
+                </svg>
+                <span class="logo-text">SwimFuel Pro</span>
+            </div>
+            
+            <div class="nav-links">
+                <span class="nav-link" onclick="showAbout()">About</span>
+                <span class="nav-link" onclick="showParents()">For Parents</span>
+                <span class="cta-button" onclick="showNutrition()">Personalized My Swimmer's Nutrition</span>
+            </div>
+        </nav>
+
+        <!-- For Parents Content -->
+        <div style="max-width: 900px; margin: 0 auto; padding: 60px 40px;">
+            <!-- Main Header -->
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h1 style="font-size: 3rem; font-weight: 700; color: #1e40af; margin-bottom: 20px;">Food Preparation for Your Competitive Swimmers</h1>
+                <p style="font-size: 1.3rem; line-height: 1.6; color: #555; margin-bottom: 40px;">Proper nutrition is one of the few variables parents can fully control in the hectic days around a swim championship meet, and it directly determines how much glycogen your swimmer can tap when the starter's horn sounds.</p>
+                <span class="cta-button" onclick="showNutrition()" style="display: inline-block; margin-top: 20px;">Create Your Swimmer's Plan</span>
+            </div>
+
+            <!-- The Foundation: Carbohydrate Loading -->
+            <div style="margin-bottom: 50px;">
+                <h2 style="font-size: 2rem; font-weight: 600; color: #1e40af; margin-bottom: 20px;">The Foundation: Carbohydrate Loading</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">Because sprint and middle-distance events rely heavily on rapidly available muscle glycogen, sports-science reviews recommend <strong>"loading" the muscles with approximately 8–12 g of carbohydrate per kilogram of body-mass during the 24–48 hours before competition</strong>; in practical terms, that is roughly <strong>400–700 g of carbs per day</strong> for most age-group athletes.</p>
+                
+                <div style="background: #f0f9ff; padding: 25px; border-radius: 15px; margin: 25px 0; border-left: 4px solid #3b82f6;">
+                    <h3 style="color: #1e40af; margin-bottom: 15px;">Best Carbohydrate Sources:</h3>
+                    <ul style="margin-left: 20px; line-height: 1.8; color: #555;">
+                        <li>Pasta and rice dishes</li>
+                        <li>Potatoes and sweet potatoes</li>
+                        <li>Fresh fruits</li>
+                        <li>Oatmeal</li>
+                        <li>Fruit-based smoothies</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: 600; color: #1e40af;"><strong>Key Tip:</strong> Spread carbs over regular meals and snacks to avoid stomach upset. This strategic bump, combined with a light taper in training, can boost pre-race glycogen stores by 30–50%, delaying fatigue and protecting technique in later heats.</p>
+                </div>
+            </div>
+
+            <!-- The Day Before the Meet -->
+            <div style="margin-bottom: 50px;">
+                <h2 style="font-size: 2rem; font-weight: 600; color: #1e40af; margin-bottom: 20px;">The Day Before the Meet</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">Aim for <strong>carb-centered plates every 2–4 hours plus steady hydration</strong>, rather than a single oversized "pasta party". Experience and research show moderate, familiar portions of complex carbs keep blood sugar stable and prevent the heavy, sluggish feeling swimmers report after very large, late dinners.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 25px;">
+                    <div style="background: #f0fdf4; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <h4 style="color: #16a34a; margin-bottom: 15px; font-size: 1.2rem;">✅ Do This:</h4>
+                        <ul style="margin-left: 15px; line-height: 1.8; color: #555;">
+                            <li>Eat carb-rich meals every 2-4 hours</li>
+                            <li>Choose familiar, complex carbohydrates</li>
+                            <li>Keep proteins lean (chicken, fish, yogurt)</li>
+                            <li>Maintain steady hydration</li>
+                        </ul>
+                    </div>
+                    <div style="background: #fef2f2; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <h4 style="color: #dc2626; margin-bottom: 15px; font-size: 1.2rem;">❌ Avoid This:</h4>
+                        <ul style="margin-left: 15px; line-height: 1.8; color: #555;">
+                            <li>Single oversized "pasta party"</li>
+                            <li>New or high-spice foods</li>
+                            <li>Excessive fats</li>
+                            <li>Very large, late dinners</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meet-Morning Fuel -->
+            <div style="margin-bottom: 50px;">
+                <h2 style="font-size: 2rem; font-weight: 600; color: #1e40af; margin-bottom: 20px;">Meet-Morning Fuel</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">Meet-morning fuel sets the tone. A balanced breakfast <strong>2-3 hours before warm-up</strong> should contribute another <strong>1–4 g of carbohydrate per kg</strong> of body weight.</p>
+                
+                <div style="background: #fefce8; padding: 25px; border-radius: 15px; margin: 25px 0; border-left: 4px solid #fbbf24;">
+                    <h4 style="color: #1e40af; margin-bottom: 15px; font-size: 1.3rem;">Perfect Pre-Meet Breakfast Ideas:</h4>
+                    <ul style="margin-left: 20px; line-height: 1.8; color: #555;">
+                        <li><strong>Classic combo:</strong> Toast or bagel + banana + low-fat milk or yogurt</li>
+                        <li><strong>For early starts:</strong> Smoothie, banana, or half a bagel plus water</li>
+                        <li><strong>Goal:</strong> "Top-off" liver glycogen without feeling overly full</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- During the Meet -->
+            <div style="margin-bottom: 50px;">
+                <h2 style="font-size: 2rem; font-weight: 600; color: #1e40af; margin-bottom: 20px;">During the Meet: "Small, Frequent, Familiar"</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">Multi-session meets can stretch 6 hours or more, so pack a cooler with easy-to-chew, quick-digesting items. Each snack should deliver <strong>20–30 g of carbohydrate and a little sodium</strong> to replace sweat losses.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 25px;">
+                    <div style="background: #e0f2fe; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <h4 style="color: #1e40af; margin-bottom: 15px; font-size: 1.3rem;">🍎 Perfect Meet Snacks:</h4>
+                        <ul style="margin-left: 15px; line-height: 1.8; color: #555;">
+                            <li>Cut fruit</li>
+                            <li>Applesauce pouches</li>
+                            <li>Pretzels</li>
+                            <li>Mini-wraps</li>
+                            <li>Oatmeal cookies</li>
+                            <li>Peanut-butter sandwiches</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f3e8ff; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <h4 style="color: #1e40af; margin-bottom: 15px; font-size: 1.3rem;">🥛 Protein Add-ons:</h4>
+                        <ul style="margin-left: 15px; line-height: 1.8; color: #555;">
+                            <li>String cheese</li>
+                            <li>Greek-yogurt tubes</li>
+                            <li>Small amounts to curb hunger</li>
+                            <li>Won't slow gastric emptying</li>
+                        </ul>
+                        <p style="margin-top: 15px; font-weight: 600; color: #dc2626;"><strong>Important:</strong> Swimmers should start each race feeling comfortably satisfied, not stuffed.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hydration Strategy -->
+            <div style="margin-bottom: 50px;">
+                <h2 style="font-size: 2rem; font-weight: 600; color: #1e40af; margin-bottom: 20px;">Hydration: Critical for Performance</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">Hydration cannot be an afterthought just because athletes are in water. <strong>Even mild dehydration raises perceived exertion and can cost tenths on the clock.</strong></p>
+                
+                <div style="background: #f8fafc; padding: 25px; border-radius: 15px; margin: 25px 0; border: 2px solid #e2e8f0;">
+                    <h4 style="color: #1e40af; margin-bottom: 20px; font-size: 1.3rem;">Hydration Strategy:</h4>
+                    <ul style="margin-left: 20px; line-height: 1.8; color: #555;">
+                        <li><strong>Between events:</strong> Encourage your swimmer to sip from a marked bottle</li>
+                        <li><strong>Electrolyte replacement:</strong> Sports drinks, chocolate milk, or water-rich fruit</li>
+                        <li><strong>Outdoor summer meets:</strong> Demand even closer attention to fluid turnover</li>
+                        <li><strong>Monitor:</strong> Keep electrolytes circulating throughout the meet</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Post-Race Recovery -->
+            <div style="margin-bottom: 50px;">
+                <h2 style="font-size: 2rem; font-weight: 600; color: #1e40af; margin-bottom: 20px;">Post-Race Recovery</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; margin-bottom: 20px;">Remind athletes to <strong>refuel within 30–45 minutes of their last race</strong>: a recovery snack supplies the <strong>3:1 carb-to-protein ratio</strong> research shows speeds glycogen resynthesis and muscle repair for the next session.</p>
+                
+                <div style="background: #f0fdf4; padding: 25px; border-radius: 15px; margin: 25px 0; border-left: 4px solid #22c55e;">
+                    <h4 style="color: #1e40af; margin-bottom: 15px; font-size: 1.3rem;">Perfect Recovery Snacks:</h4>
+                    <ul style="margin-left: 20px; line-height: 1.8; color: #555;">
+                        <li>Chocolate milk</li>
+                        <li>Yogurt-fruit parfait</li>
+                        <li>Turkey-and-bread roll</li>
+                        <li>Any snack with 3:1 carb-to-protein ratio</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div style="text-align: center; background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%); color: white; padding: 40px; border-radius: 20px;">
+                <h3 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 15px;">The Complete Strategy</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 25px; opacity: 0.9;">By front-loading carbohydrates 48 hours out, maintaining steady carb-rich snacks and fluids on deck, and closing each session with a smart recovery bite, you create the nutritional safety-net that lets your swimmer dive in confident their body will match their hard-earned training on the biggest stage.</p>
+                <span class="hero-button" onclick="showNutrition()">Create Your Personalized Plan</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nutrition Form Section -->
+    <div id="nutritionPage" class="page-section">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+            <button onclick="showHome()" style="background: #6b7280; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-bottom: 20px; transition: background 0.3s ease;">← Back to Home</button>
+            
+            <div style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 20px; padding: 40px; margin-bottom: 30px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);">
+                <h2>Tell Us About Your Swimming Goals</h2>
+                <form id="swimmerSurvey">
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Swimmer's Name</label>
+                        <input type="text" id="swimmerName" placeholder="Enter swimmer's name" style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9);">
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">SwimCloud Page</label>
+                        <input type="url" id="swimcloudPage" placeholder="https://www.swimcloud.com/swimmer/..." style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9);">
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Age</label>
+                        <select id="age" style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9);">
+                            <option value="">Select age range</option>
+                            <option value="6-8">6-8 years</option>
+                            <option value="9-10">9-10 years</option>
+                            <option value="11-12">11-12 years</option>
+                            <option value="13-14">13-14 years</option>
+                            <option value="15-18">15-18 years</option>
+                            <option value="19+">19 and up</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Gender</label>
+                        <select id="gender" style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9);">
+                            <option value="">Select gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Weight</label>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <label style="margin: 0; font-weight: normal; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="weightUnit" value="kg" checked onchange="toggleWeightUnit()" style="width: auto; margin: 0;">
+                                Kilograms (kg)
+                            </label>
+                            <label style="margin: 0; font-weight: normal; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="weightUnit" value="lb" onchange="toggleWeightUnit()" style="width: auto; margin: 0;">
+                                Pounds (lb)
+                            </label>
+                        </div>
+                        <input type="number" id="weight" placeholder="Enter weight" step="0.1" min="20" max="500" style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9);">
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Height</label>
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <label style="margin: 0; font-weight: normal; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="heightUnit" value="cm" checked onchange="toggleHeightUnit()" style="width: auto; margin: 0;">
+                                Centimeters (cm)
+                            </label>
+                            <label style="margin: 0; font-weight: normal; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="heightUnit" value="ft" onchange="toggleHeightUnit()" style="width: auto; margin: 0;">
+                                Feet & Inches
+                            </label>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="number" id="heightCm" placeholder="Enter height in cm" step="0.1" min="100" max="250" style="flex: 1; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9); display: block;">
+                            <div style="display: none; flex: 1;" id="heightFtIn">
+                                <input type="number" id="heightFt" placeholder="Feet" min="3" max="8" step="1" style="flex: 1; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9); margin-right: 10px;">
+                                <input type="number" id="heightIn" placeholder="Inches" min="0" max="11" step="0.5" style="flex: 1; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9);">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">BMI (Calculated)</label>
+                        <input type="text" id="bmi" placeholder="BMI will be calculated automatically" readonly style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; background-color: #f5f5f5; cursor: not-allowed;">
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Next Major Meet Date</label>
+                        <input type="date" id="meetDate" style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9);">
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Name of your meet</label>
+                        <input type="text" id="meetName" placeholder="e.g., State Championships, Junior Olympics, etc." style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9);">
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Meet Duration</label>
+                        <select id="meetDuration" style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9);">
+                            <option value="">Select meet duration</option>
+                            <option value="1-day">1 Day</option>
+                            <option value="2-day">2 Days</option>
+                            <option value="3-day">3 Days</option>
+                            <option value="4-day">4 Days</option>
+                            <option value="5-day">5+ Days</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Training intensity toward your meet</label>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 10px;">
+                            <label style="background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%); color: white; padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 3px solid transparent;">
+                                <input type="radio" name="intensity" value="easy" style="display: none;">
+                                <div style="border: 3px solid transparent; border-radius: 15px; transition: all 0.3s ease;">
+                                    <h3 style="font-size: 1.3rem; margin-bottom: 10px;">Easy Training</h3>
+                                    <p style="font-size: 0.9rem; opacity: 0.9;">≤ 45 min</p>
+                                </div>
+                            </label>
+                            <label style="background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%); color: white; padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 3px solid transparent;">
+                                <input type="radio" name="intensity" value="moderate" style="display: none;">
+                                <div style="border: 3px solid transparent; border-radius: 15px; transition: all 0.3s ease;">
+                                    <h3 style="font-size: 1.3rem; margin-bottom: 10px;">Moderate Training</h3>
+                                    <p style="font-size: 0.9rem; opacity: 0.9;">~ 90min - 2 hrs</p>
+                                </div>
+                            </label>
+                            <label style="background: linear-gradient(135deg, #87ceeb 0%, #4a90e2 100%); color: white; padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 3px solid transparent;">
+                                <input type="radio" name="intensity" value="hard" style="display: none;">
+                                <div style="border: 3px solid transparent; border-radius: 15px; transition: all 0.3s ease;">
+                                    <h3 style="font-size: 1.3rem; margin-bottom: 10px;">Hard Training</h3>
+                                    <p style="font-size: 0.9rem; opacity: 0.9;">> 2 hrs or double practice</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Primary Events</label>
+                        <select id="events" multiple style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9);">
+                            <option value="sprint">Sprint (50m-100m)</option>
+                            <option value="middle">Middle Distance (200m-400m)</option>
+                            <option value="distance">Distance (800m+)</option>
+                            <option value="im">Individual Medley</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Dietary Restrictions</label>
+                        <textarea id="restrictions" placeholder="List any allergies, dietary preferences, or restrictions" style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; background: rgba(255, 255, 255, 0.9); min-height: 100px;"></textarea>
+                    </div>
+
+                    <button type="button" onclick="generateNutritionPlan()" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 18px 40px; border: none; border-radius: 50px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: block; margin: 30px auto 0;">Generate My Nutrition Plan</button>
+                </form>
+            </div>
+
+            <!-- Nutrition Timeline Table -->
+            <div id="nutritionTimeline" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 20px; padding: 40px; margin: 30px 0; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);">
+                <h2>Competition Nutrition Timeline</h2>
+                <p id="timelineDescription">Complete the form above and click "Generate My Nutrition Plan" to see your personalized timeline.</p>
+                
+                <table id="timelineTable" style="width: 100%; border-collapse: collapse; margin-top: 20px; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
+                    <thead>
+                        <tr>
+                            <th style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: 600; font-size: 14px;">Dates</th>
+                            <th style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: 600; font-size: 14px;">Phase</th>
+                            <th style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: 600; font-size: 14px;">Carbs</th>
+                            <th style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: 600; font-size: 14px;">Protein</th>
+                            <th style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: 600; font-size: 14px;">Veggies</th>
+                            <th style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: 600; font-size: 14px;">Fruits</th>
+                            <th style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-weight: 600; font-size: 14px;">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="timelineTableBody">
+                        <tr>
+                            <td colspan="7" style="padding: 30px; color: #888; font-style: italic; text-align: center;">
+                                Fill out the form above to generate your nutrition timeline
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple navigation functions
+        function showAbout() {
+            console.log('About clicked');
+            hideAllSections();
+            document.getElementById('aboutPage').classList.add('active');
+        }
+
+        function showParents() {
+            console.log('Parents clicked');
+            hideAllSections();
+            document.getElementById('parentsPage').classList.add('active');
+        }
+
+        function showNutrition() {
+            console.log('Nutrition clicked');
+            hideAllSections();
+            document.getElementById('nutritionPage').classList.add('active');
+        }
+
+        function showHome() {
+            console.log('Home clicked');
+            hideAllSections();
+            document.getElementById('landingPage').classList.add('active');
+        }
+
+        function hideAllSections() {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => section.classList.remove('active'));
+        }
+
+        // Test that functions are loaded
+        console.log('Page loaded, navigation functions ready');
+
+        // Unit toggle functions
+        function toggleWeightUnit() {
+            const weightInput = document.getElementById('weight');
+            if (!weightInput) return;
+            
+            const isKg = document.querySelector('input[name="weightUnit"]:checked').value === 'kg';
+            
+            if (isKg) {
+                weightInput.placeholder = 'Enter weight in kg';
+                weightInput.max = '200';
+            } else {
+                weightInput.placeholder = 'Enter weight in lb';
+                weightInput.max = '440';
+            }
+            
+            weightInput.value = '';
+            calculateBMI();
+        }
+
+        function toggleHeightUnit() {
+            const heightCm = document.getElementById('heightCm');
+            const heightFtIn = document.getElementById('heightFtIn');
+            if (!heightCm || !heightFtIn) return;
+            
+            const isCm = document.querySelector('input[name="heightUnit"]:checked').value === 'cm';
+            
+            if (isCm) {
+                heightCm.style.display = 'block';
+                heightFtIn.style.display = 'none';
+            } else {
+                heightCm.style.display = 'none';
+                heightFtIn.style.display = 'flex';
+            }
+            
+            document.getElementById('heightCm').value = '';
+            document.getElementById('heightFt').value = '';
+            document.getElementById('heightIn').value = '';
+            calculateBMI();
+        }
+
+        // BMI Calculation
+        function calculateBMI() {
+            const weightInput = document.getElementById('weight');
+            const heightCm = document.getElementById('heightCm');
+            const heightFt = document.getElementById('heightFt');
+            const heightIn = document.getElementById('heightIn');
+            const bmiField = document.getElementById('bmi');
+            
+            if (!weightInput || !heightCm || !heightFt || !heightIn || !bmiField) return;
+            
+            const isWeightKg = document.querySelector('input[name="weightUnit"]:checked').value === 'kg';
+            const isHeightCm = document.querySelector('input[name="heightUnit"]:checked').value === 'cm';
+            
+            let weightKg = 0;
+            let heightM = 0;
+            
+            if (weightInput.value) {
+                if (isWeightKg) {
+                    weightKg = parseFloat(weightInput.value);
+                } else {
+                    weightKg = parseFloat(weightInput.value) * 0.453592;
+                }
+            }
+            
+            if (isHeightCm && heightCm.value) {
+                heightM = parseFloat(heightCm.value) / 100;
+            } else if (!isHeightCm && heightFt.value) {
+                const feet = parseFloat(heightFt.value) || 0;
+                const inches = parseFloat(heightIn.value) || 0;
+                const totalInches = (feet * 12) + inches;
+                heightM = totalInches * 0.0254;
+            }
+            
+            if (weightKg > 0 && heightM > 0) {
+                const bmi = weightKg / (heightM * heightM);
+                bmiField.value = bmi.toFixed(1);
+            } else {
+                bmiField.value = '';
+            }
+        }
+
+        // Generate Nutrition Plan
+        function generateNutritionPlan() {
+            try {
+                const name = document.getElementById('swimmerName').value;
+                const age = document.getElementById('age').value;
+                const weight = document.getElementById('weight').value;
+                const meetDate = document.getElementById('meetDate').value;
+                const meetDuration = document.getElementById('meetDuration').value;
+                const intensity = document.querySelector('input[name="intensity"]:checked');
+                
+                if (!name || !age || !weight || !meetDate || !meetDuration || !intensity) {
+                    alert('Please fill in all required fields:\n- Name\n- Age\n- Weight\n- Meet Date\n- Meet Duration\n- Training Intensity');
+                    return;
+                }
+                
+                // Determine age group for nutrition percentages
+                function getAgeGroup(ageRange) {
+                    switch(ageRange) {
+                        case '6-8':
+                        case '9-10':
+                            return '10 & Under';
+                        case '11-12':
+                            return 'AG 11-12';
+                        case '13-14':
+                            return 'AG 13-14';
+                        case '15-18':
+                        case '19+':
+                            return 'AG 15 & over';
+                        default:
+                            return 'AG 13-14';
+                    }
+                }
+                
+                const ageGroup = getAgeGroup(age);
+                
+                // Age-specific nutrition percentages
+                const nutritionData = {
+                    '10 & Under': {
+                        phase1: { carbs: "50%", protein: "18%", veggies: "17%", fruits: "15%" },
+                        phase2: { carbs: "55%", protein: "17%", veggies: "13%", fruits: "15%" },
+                        phase3: { carbs: "67%", protein: "15%", veggies: "8%", fruits: "10%" },
+                        phase4: { carbs: "60%", protein: "15%", veggies: "5%", fruits: "10%" }
+                    },
+                    'AG 11-12': {
+                        phase1: { carbs: "50%", protein: "20%", veggies: "15%", fruits: "15%" },
+                        phase2: { carbs: "58%", protein: "18%", veggies: "12%", fruits: "12%" },
+                        phase3: { carbs: "68%", protein: "15%", veggies: "7%", fruits: "10%" },
+                        phase4: { carbs: "63%", protein: "15%", veggies: "5%", fruits: "10%" }
+                    },
+                    'AG 13-14': {
+                        phase1: { carbs: "50%", protein: "22%", veggies: "15%", fruits: "13%" },
+                        phase2: { carbs: "60%", protein: "18%", veggies: "12%", fruits: "10%" },
+                        phase3: { carbs: "69%", protein: "15%", veggies: "6%", fruits: "10%" },
+                        phase4: { carbs: "65%", protein: "15%", veggies: "5%", fruits: "10%" }
+                    },
+                    'AG 15 & over': {
+                        phase1: { carbs: "50%", protein: "25%", veggies: "15%", fruits: "10%" },
+                        phase2: { carbs: "62%", protein: "18%", veggies: "10%", fruits: "10%" },
+                        phase3: { carbs: "70%", protein: "15%", veggies: "5%", fruits: "10%" },
+                        phase4: { carbs: "68%", protein: "15%", veggies: "5%", fruits: "10%" }
+                    }
+                };
+                
+                const ageNutrition = nutritionData[ageGroup];
+                
+                // Calculate meet date range
+                const meetDateParts = meetDate.split('-');
+                const meetStartDate = new Date(parseInt(meetDateParts[0]), parseInt(meetDateParts[1]) - 1, parseInt(meetDateParts[2]));
+                
+                let durationDays = 1;
+                switch(meetDuration) {
+                    case '1-day': durationDays = 1; break;
+                    case '2-day': durationDays = 2; break;
+                    case '3-day': durationDays = 3; break;
+                    case '4-day': durationDays = 4; break;
+                    case '5-day': durationDays = 5; break;
+                }
+                
+                let meetDateRangeText;
+                if (durationDays === 1) {
+                    meetDateRangeText = meetDateParts[1] + '/' + meetDateParts[2] + '/' + meetDateParts[0];
+                } else {
+                    const meetEndDate = new Date(meetStartDate);
+                    meetEndDate.setDate(meetEndDate.getDate() + durationDays - 1);
+                    const endMonth = (meetEndDate.getMonth() + 1).toString();
+                    const endDay = meetEndDate.getDate().toString();
+                    const endYear = meetEndDate.getFullYear().toString();
+                    meetDateRangeText = meetDateParts[1] + '/' + meetDateParts[2] + '/' + meetDateParts[0] + ' - ' + endMonth + '/' + endDay + '/' + endYear;
+                }
+                
+                document.getElementById('timelineDescription').textContent = 
+                    `Based on your meet date (${meetDateRangeText}) and age group (${ageGroup}), here's your personalized nutrition schedule:`;
+                
+                const tableBody = document.getElementById('timelineTableBody');
+                const meetDateObj = new Date(parseInt(meetDateParts[0]), parseInt(meetDateParts[1]) - 1, parseInt(meetDateParts[2]));
+                
+                tableBody.innerHTML = '';
+                
+                // Clear any existing calorie information
+                const nutritionTimeline = document.getElementById('nutritionTimeline');
+                const existingCalorieInfo = nutritionTimeline.querySelector('div[style*="background: linear-gradient(135deg, #f0f9ff"]');
+                if (existingCalorieInfo) {
+                    existingCalorieInfo.remove();
+                }
+                
+                const phases = [
+                    { 
+                        name: "14-8 Days Out", 
+                        days: [-14, -8], 
+                        carbs: ageNutrition.phase1.carbs, 
+                        protein: ageNutrition.phase1.protein, 
+                        veggies: ageNutrition.phase1.veggies, 
+                        fruits: ageNutrition.phase1.fruits, 
+                        notes: "Build glycogen but keep variety" 
+                    },
+                    { 
+                        name: "7-3 Days Out", 
+                        days: [-7, -3], 
+                        carbs: ageNutrition.phase2.carbs, 
+                        protein: ageNutrition.phase2.protein, 
+                        veggies: ageNutrition.phase2.veggies, 
+                        fruits: ageNutrition.phase2.fruits, 
+                        notes: "Taper + glycogen load" 
+                    },
+                    { 
+                        name: "Day Before (Meet -1)", 
+                        days: [-1, -1], 
+                        carbs: ageNutrition.phase3.carbs, 
+                        protein: ageNutrition.phase3.protein, 
+                        veggies: ageNutrition.phase3.veggies, 
+                        fruits: ageNutrition.phase3.fruits, 
+                        notes: "Low-residue, hydrate" 
+                    },
+                    { 
+                        name: "Race Day", 
+                        days: [0, durationDays - 1], 
+                        carbs: ageNutrition.phase4.carbs, 
+                        protein: ageNutrition.phase4.protein, 
+                        veggies: ageNutrition.phase4.veggies, 
+                        fruits: ageNutrition.phase4.fruits, 
+                        notes: "Fast-fuel, easy-digest" 
+                    }
+                ];
+                
+                phases.forEach(phase => {
+                    const startDate = new Date(meetDateObj);
+                    const endDate = new Date(meetDateObj);
+                    
+                    startDate.setDate(startDate.getDate() + phase.days[0]);
+                    endDate.setDate(endDate.getDate() + phase.days[1]);
+                    
+                    let dateStr;
+                    if (phase.days[0] === phase.days[1]) {
+                        dateStr = (startDate.getMonth() + 1) + '/' + startDate.getDate();
+                    } else {
+                        dateStr = (startDate.getMonth() + 1) + '/' + startDate.getDate() + ' - ' + (endDate.getMonth() + 1) + '/' + endDate.getDate();
+                    }
+                    
+                    const row = tableBody.insertRow();
+                    row.innerHTML = `
+                        <td style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; font-size: 13px; font-weight: 600; color: #667eea; cursor: pointer; text-decoration: underline;">${dateStr}</td>
+                        <td style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; font-size: 13px; font-weight: 600; color: #333;">${phase.name}</td>
+                        <td style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; font-size: 13px;">${phase.carbs}</td>
+                        <td style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; font-size: 13px;">${phase.protein}</td>
+                        <td style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; font-size: 13px;">${phase.veggies}</td>
+                        <td style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; font-size: 13px;">${phase.fruits}</td>
+                        <td style="padding: 15px; text-align: center; border-bottom: 1px solid #e0e0e0; font-size: 13px;">${phase.notes}</td>
+                    `;
+                });
+                
+                // Calculate daily calorie needs
+                const gender = document.getElementById('gender').value;
+                const weightValue = parseFloat(document.getElementById('weight').value);
+                const isWeightKg = document.querySelector('input[name="weightUnit"]:checked').value === 'kg';
+                
+                // Convert weight to kg if needed
+                let weightKg = weightValue;
+                if (!isWeightKg) {
+                    weightKg = weightValue * 0.453592;
+                }
+                
+                // Calculate BMR using age-appropriate formulas
+                function calculateBMR(ageRange, gender, weightKg) {
+                    let ageMiddle;
+                    switch(ageRange) {
+                        case '6-8': ageMiddle = 7; break;
+                        case '9-10': ageMiddle = 9.5; break;
+                        case '11-12': ageMiddle = 11.5; break;
+                        case '13-14': ageMiddle = 13.5; break;
+                        case '15-18': ageMiddle = 16.5; break;
+                        case '19+': ageMiddle = 20; break;
+                        default: ageMiddle = 14;
+                    }
+                    
+                    let bmr;
+                    if (gender === 'male') {
+                        if (ageMiddle <= 12) {
+                            bmr = (22.7 * weightKg) + 495;
+                        } else {
+                            bmr = (17.5 * weightKg) + 651;
+                        }
+                    } else {
+                        if (ageMiddle <= 12) {
+                            bmr = (22.5 * weightKg) + 499;
+                        } else {
+                            bmr = (12.2 * weightKg) + 746;
+                        }
+                    }
+                    return Math.round(bmr);
+                }
+                
+                // Activity multiplier based on training intensity
+                function getActivityMultiplier(intensityValue) {
+                    switch(intensityValue) {
+                        case 'easy': return 1.6;
+                        case 'moderate': return 1.8;
+                        case 'hard': return 2.0;
+                        default: return 1.7;
+                    }
+                }
+                
+                const bmr = calculateBMR(age, gender, weightKg);
+                const activityMultiplier = getActivityMultiplier(intensity.value);
+                const dailyCalories = Math.round(bmr * activityMultiplier);
+                
+                // Add calorie information after the table
+                const calorieInfo = document.createElement('div');
+                calorieInfo.style.cssText = 'background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 25px; border-radius: 15px; margin-top: 25px; border-left: 4px solid #0ea5e9; text-align: center;';
+                calorieInfo.innerHTML = `
+                    <h3 style="color: #1e40af; margin-bottom: 15px; font-size: 1.4rem;">📊 Daily Calorie Needs</h3>
+                    <p style="color: #555; font-size: 1.1rem; margin-bottom: 10px;">Based on age (${ageGroup}), weight (${Math.round(weightKg)}kg), gender (${gender}), and training intensity (${intensity.value}):</p>
+                    <div style="font-size: 2rem; font-weight: 700; color: #0ea5e9; margin: 15px 0;">${dailyCalories.toLocaleString()} calories/day</div>
+                    <p style="color: #666; font-size: 0.95rem; font-style: italic;">This includes base metabolic needs plus swimming training demands. Adjust portions within the nutrition timeline percentages to meet this daily target.</p>
+                `;
+                
+                nutritionTimeline.appendChild(calorieInfo);
+                
+                alert(`Nutrition plan generated for ${name} (${ageGroup})!\nDaily calorie target: ${dailyCalories.toLocaleString()} calories\nYour personalized timeline is ready below.`);
+                document.getElementById('nutritionTimeline').scrollIntoView({ behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error generating nutrition plan:', error);
+                alert('An error occurred while generating the nutrition plan. Please try again.');
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up event listeners');
+            
+            const weightInput = document.getElementById('weight');
+            const heightCm = document.getElementById('heightCm');
+            const heightFt = document.getElementById('heightFt');
+            const heightIn = document.getElementById('heightIn');
+            
+            if (weightInput) weightInput.addEventListener('input', calculateBMI);
+            if (heightCm) heightCm.addEventListener('input', calculateBMI);
+            if (heightFt) heightFt.addEventListener('input', calculateBMI);
+            if (heightIn) heightIn.addEventListener('input', calculateBMI);
+        });
+    </script>
+    </script>
+</body>
+</html>
