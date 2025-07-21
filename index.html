@@ -840,12 +840,12 @@
                     meetDateRangeText = meetDateParts[1] + '/' + meetDateParts[2] + '/' + meetDateParts[0] + ' - ' + endMonth + '/' + endDay + '/' + endYear;
                 }
                 
-                document.getElementById('timelineDescription').textContent = 
-                                       `Based on your meet date (${meetDateRangeText}) and age group (${ageGroup}), here's your personalized nutrition schedule:<br><br><strong>💡 Click on each date below to see recommended foods and foods to avoid.</strong>`;
+                document.getElementById('timelineDescription').innerHTML = 
+                    `Based on your meet date (${meetDateRangeText}) and age group (${ageGroup}), here's your personalized nutrition schedule:<br><br><strong>💡 Click on each date below to see recommended foods and foods to avoid.</strong>`;
                 
                 const tableBody = document.getElementById('timelineTableBody');
                 const meetDateObj = new Date(parseInt(meetDateParts[0]), parseInt(meetDateParts[1]) - 1, parseInt(meetDateParts[2]));
-                
+       
                 tableBody.innerHTML = '';
                 
                 const phases = [
